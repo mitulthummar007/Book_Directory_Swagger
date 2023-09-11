@@ -45,7 +45,8 @@ const loginUser = async(req , res)=>{
         if(!userObj){
             return res.status(403).json({
                 status : APP_STATUS.FAILED,
-                msg : "User Not a register"
+                msg : "User Not a register",
+                data:null
             });
         }
         let matchpass = await bcryptjs.compare(password,userObj.password)
