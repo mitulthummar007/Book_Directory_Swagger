@@ -5,21 +5,36 @@ const userRouter = require('./Routers/UserRouter')
 const bookRouter = require('./Routers/bookRouter')
 const swaggerJsDocs = require('swagger-jsdoc')
 const swaggerUI = require('swagger-ui-express')
+const fs = require('fs')
 
 const swaggerOptions = {
     swaggerDefinition: {
         openapi: '3.0.0',
         info:{
             title: 'Contact Book',
-            version :'1.0.0'
-        }
+            version :'1.0.0',
+            description : `[http://localhost:8000/swagger.json](http://localhost:8000/swagger.json)`
+        },
+        
+        servers: [
+            {
+                url:'http://localhost:8000/api-docs'
+            },
+        ],
     },
+    
     apis: ['swagger/swagger.js'],
 };
 const swaggerDocs = swaggerJsDocs(swaggerOptions)
+const swaggerjson = JSON.stringify(swaggerDocs,null,2)
+fs.writeFileSync("swagger.json",swaggerjson)
+console.log("Swagger json saved successfully.....");
 
 app.use("/api-docs", swaggerUI.serve, swaggerUI.setup(swaggerDocs));
 
+app.get("/swagger.json",(request,response)=>{
+    response.sendFile(__dirname + "/swagger.json")
+})
 // mongodb database connection
 require('./connections/mongdb')
 
