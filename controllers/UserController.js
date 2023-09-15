@@ -64,7 +64,7 @@ const loginUser = async(req , res)=>{
             email : userObj.email
         }
         if(secretKey && payload){
-            let token = await jwt.sign(payload , secretKey,{expiresIn : "9h"})
+            let token = await jwt.sign(payload , secretKey,{expiresIn : "3h"})
             return res.status(200).json({
                 Token : token,
                 status : APP_STATUS.SUCCESS,

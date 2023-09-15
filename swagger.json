@@ -5,11 +5,6 @@
     "version": "1.0.0",
     "description": "[http://localhost:8000/swagger.json](http://localhost:8000/swagger.json)"
   },
-  "servers": [
-    {
-      "url": "http://localhost:8000/api-docs"
-    }
-  ],
   "paths": {
     "/api/user/register": {
       "post": {
@@ -22,18 +17,19 @@
           "content": {
             "application/json": {
               "schema": {
+                "type": "object",
                 "properties": {
                   "username": {
                     "type": "string",
-                    "example": "yourname"
+                    "example": "exampleusername"
                   },
                   "email": {
                     "type": "string",
-                    "example": "youremail"
+                    "example": "example@gmail.com"
                   },
                   "password": {
                     "type": "string",
-                    "example": "Yourpassword"
+                    "example": "bcrypt"
                   }
                 }
               }
@@ -47,11 +43,13 @@
               "application/json": {
                 "example": {
                   "status": "SUCCESS",
-                  "msg": "User registered successfully",
+                  "msg": "user register successfully",
                   "data": {
-                    "username": "yourname",
-                    "email": "youremail@gmail.com",
-                    "password": "yourpassword"
+                    "username": "exampleusername",
+                    "email": "abc@gmail.com",
+                    "password": "bcrypt",
+                    "createdAt": "2023-09-14T11:53:14.579Z",
+                    "updatedAt": "2023-09-14T11:53:14.579Z"
                   }
                 }
               }
@@ -95,14 +93,15 @@
           "content": {
             "application/json": {
               "schema": {
+                "type": "object",
                 "properties": {
                   "email": {
                     "type": "string",
-                    "example": "youremail@gmail.com"
+                    "example": "example@gmail.com"
                   },
                   "password": {
                     "type": "string",
-                    "example": "Your@123"
+                    "example": "bcrypt"
                   }
                 }
               }
@@ -118,8 +117,12 @@
                   "status": "SUCCESS",
                   "msg": "User Login successfully",
                   "data": {
-                    "email": "youremail@gmail.com",
-                    "password": "bcrypts"
+                    "token": "exampletoken",
+                    "username": "exampleusername",
+                    "email": "abc@gmail.com",
+                    "password": "bcrypt",
+                    "createdAt": "2023-09-14T11:53:14.579Z",
+                    "updatedAt": "2023-09-14T11:53:14.579Z"
                   }
                 }
               }
@@ -190,20 +193,18 @@
         ],
         "responses": {
           "200": {
-            "description": "get user data",
+            "description": "Successful response with user data.",
             "content": {
               "application/json": {
                 "example": {
                   "status": "SUCCESS",
-                  "msg": "User Login successfully",
+                  "msg": "Successful response with user data.",
                   "data": {
-                    "_id": "64faa7272189001ae7453eaa,",
-                    "username": "Test,",
-                    "email": "test@gmail.com,",
-                    "password": "bcrypt,",
-                    "createdAt": "2023-09-08T04:46:31.113Z,",
-                    "updatedAt": "2023-09-08T04:46:31.113Z,",
-                    "__v": 0
+                    "username": "exampleusername",
+                    "email": "abc@gmail.com",
+                    "password": "bcrypt",
+                    "createdAt": "2023-09-14T11:53:14.579Z",
+                    "updatedAt": "2023-09-14T11:53:14.579Z"
                   }
                 }
               }
@@ -222,12 +223,12 @@
             }
           },
           "500": {
-            "description": "Internal server error",
+            "description": "Internal Server Error",
             "content": {
               "application/json": {
                 "example": {
                   "status": "FAILED",
-                  "msg": "Internal server error",
+                  "msg": "Internal Server Error",
                   "data": null
                 }
               }
@@ -266,20 +267,16 @@
               "schema": {
                 "properties": {
                   "bookname": {
-                    "type": "string",
-                    "example": "bookname"
+                    "type": "string"
                   },
                   "authorname": {
-                    "type": "string",
-                    "example": "authorname"
+                    "type": "string"
                   },
                   "bookimg": {
-                    "type": "string",
-                    "example": "imgurl"
+                    "type": "string"
                   },
                   "bookversion": {
-                    "type": "string",
-                    "example": "v.0.0.1"
+                    "type": "string"
                   }
                 }
               }
@@ -293,14 +290,14 @@
               "application/json": {
                 "example": {
                   "status": "SUCCESS",
-                  "msg": "User added successfully",
+                  "msg": "Book added successfully!!!",
                   "data": {
-                    "bookname": "thinking,",
-                    "authorname": "swamivivekanand",
-                    "bookimg": "urlimg.com,",
-                    "bookversion": "v.1.1.2.3,",
-                    "createdAt": "2023-09-12T13:13:44.240Z,",
-                    "updatedAt": "2023-09-12T13:13:44.240Z,"
+                    "bookname": "thinking",
+                    "authorname": "vivekanand",
+                    "bookimg": "url@12s21fasfasdf",
+                    "bookversion": "v.0.0.01",
+                    "createdAt": "2023-09-14T11:53:14.579Z",
+                    "updatedAt": "2023-09-14T11:53:14.579Z"
                   }
                 }
               }
@@ -311,8 +308,8 @@
             "content": {
               "application/json": {
                 "example": {
-                  "Status": "FAILED",
-                  "message": "Book already added",
+                  "status": "FAILED",
+                  "msg": "Book already added",
                   "data": null
                 }
               }
@@ -323,8 +320,8 @@
             "content": {
               "application/json": {
                 "example": {
-                  "Status": "FAILED",
-                  "message": "Internal Server Error",
+                  "status": "FAILED",
+                  "msg": "Internal Server Error",
                   "data": null
                 }
               }
@@ -371,20 +368,16 @@
               "schema": {
                 "properties": {
                   "bookname": {
-                    "type": "string",
-                    "example": "updatebookname"
+                    "type": "string"
                   },
                   "authorname": {
-                    "type": "string",
-                    "example": "updateauthorname"
+                    "type": "string"
                   },
                   "bookimg": {
-                    "type": "string",
-                    "example": "updateimg"
+                    "type": "string"
                   },
                   "bookversion": {
-                    "type": "string",
-                    "example": "updatebookversion"
+                    "type": "string"
                   }
                 }
               }
@@ -398,14 +391,14 @@
               "application/json": {
                 "example": {
                   "status": "SUCCESS",
-                  "msg": "User update successfully",
+                  "msg": "Book updated successfully!!!",
                   "data": {
-                    "username": "rakesh,",
-                    "email": "rakesh@gmail.com,",
-                    "password": "bcryptpassword,",
-                    "_id": "65006408781e577dcde713b0,",
-                    "createdAt": "2023-09-12T13:13:44.240Z,",
-                    "updatedAt": "2023-09-12T13:13:44.240Z,"
+                    "bookname": "updatethinking",
+                    "authorname": "updatevivekanand",
+                    "bookimg": "updateurl@12s21fasfasdf",
+                    "bookversion": "updatev.0.0.01",
+                    "createdAt": "2023-09-14T11:53:14.579Z",
+                    "updatedAt": "2023-09-14T11:53:14.579Z"
                   }
                 }
               }
@@ -416,8 +409,8 @@
             "content": {
               "application/json": {
                 "example": {
-                  "Status": "FAILED",
-                  "message": "Unauthorized - Invalid token or no token provided.",
+                  "status": "FAILED",
+                  "msg": "Unauthorized - Invalid token or no token provided.",
                   "data": null
                 }
               }
@@ -428,8 +421,8 @@
             "content": {
               "application/json": {
                 "example": {
-                  "Status": "FAILED",
-                  "message": "Unauthorized - Invalid user request or book not found.",
+                  "status": "FAILED",
+                  "msg": "Forbidden - Invalid user request or book not found.",
                   "data": null
                 }
               }
@@ -440,8 +433,8 @@
             "content": {
               "application/json": {
                 "example": {
-                  "Status": "FAILED",
-                  "message": "book not found",
+                  "status": "FAILED",
+                  "msg": "Book not found.",
                   "data": null
                 }
               }
@@ -452,8 +445,8 @@
             "content": {
               "application/json": {
                 "example": {
-                  "Status": "FAILED",
-                  "message": "Internal Server Error",
+                  "status": "FAILED",
+                  "msg": "Internal Server Error",
                   "data": null
                 }
               }
@@ -499,12 +492,15 @@
             "content": {
               "application/json": {
                 "example": {
-                  "Status": "Success",
-                  "message": "Book delete successfully!!!",
+                  "status": "SUCCESS",
+                  "msg": "Book deleted successfully!!!",
                   "data": {
-                    "_id": "65006408781e577dcde713b0,",
-                    "createdAt": "2023-09-12T13:13:44.240Z,",
-                    "updatedAt": "2023-09-12T13:13:44.240Z,"
+                    "bookname": "deletedthinking",
+                    "authorname": "deletedvivekanand",
+                    "bookimg": "deletedurl@12s21fasfasdf",
+                    "bookversion": "deletedv.0.0.01",
+                    "createdAt": "2023-09-14T11:53:14.579Z",
+                    "updatedAt": "2023-09-14T11:53:14.579Z"
                   }
                 }
               }
@@ -515,8 +511,8 @@
             "content": {
               "application/json": {
                 "example": {
-                  "Status": "FAILED",
-                  "message": "Invalid token or no token provided.",
+                  "status": "FAILED",
+                  "msg": "Unauthorized - Invalid token or no token provided.",
                   "data": null
                 }
               }
@@ -527,8 +523,8 @@
             "content": {
               "application/json": {
                 "example": {
-                  "Status": "FAILED",
-                  "message": "Book not found.",
+                  "status": "FAILED",
+                  "msg": "Book not found.",
                   "data": null
                 }
               }
@@ -539,8 +535,8 @@
             "content": {
               "application/json": {
                 "example": {
-                  "Status": "FAILED",
-                  "message": "Internal Server Error",
+                  "status": "FAILED",
+                  "msg": "Internal Server Error",
                   "data": null
                 }
               }
@@ -576,40 +572,28 @@
             "content": {
               "application/json": {
                 "example": {
-                  "Status": "Success",
-                  "message": "all Book get successfully!!!",
+                  "status": "SUCCESS",
+                  "msg": "get all book successfully!!!",
                   "data": {
-                    "bookname": "thinking,",
-                    "authorname": "swamivivekanand",
-                    "bookimg": "urlimg.com,",
-                    "bookversion": "v.1.1.2.3,",
-                    "createdAt": "2023-09-12T13:13:44.240Z,",
-                    "updatedAt": "2023-09-12T13:13:44.240Z,"
+                    "bookname": "onethinking",
+                    "authorname": "onevivekanand",
+                    "bookimg": "oneurl@12s21fasfasdf",
+                    "bookversion": "onev.0.0.01",
+                    "createdAt": "2023-09-14T11:53:14.579Z",
+                    "updatedAt": "2023-09-14T11:53:14.579Z"
                   }
                 }
               }
             }
           },
           "500": {
-            "description": "Internal Server Error.",
+            "description": "Internal Server Error",
             "content": {
               "application/json": {
-                "schema": {
-                  "type": "object",
-                  "properties": {
-                    "status": {
-                      "type": "string",
-                      "example": "FAILED"
-                    },
-                    "msg": {
-                      "type": "string",
-                      "example": "Internal Server Error"
-                    },
-                    "data": {
-                      "type": "string",
-                      "example": null
-                    }
-                  }
+                "example": {
+                  "status": "FAILED",
+                  "msg": "Internal Server Error",
+                  "data": null
                 }
               }
             }
@@ -650,21 +634,18 @@
         ],
         "responses": {
           "200": {
-            "description": "Book found by book name.",
+            "description": "Book found.",
             "content": {
               "application/json": {
-                "example": {
-                  "Status": "Success",
-                  "message": "awailable Book",
-                  "data": {
-                    "_id": "exampleid",
-                    "bookname": "thinking,",
-                    "authorname": "swamivivekanand",
-                    "bookimg": "urlimg.com,",
-                    "bookversion": "v.1.1.2.3,",
-                    "createdAt": "2023-09-12T13:13:44.240Z,",
-                    "updatedAt": "2023-09-12T13:13:44.240Z,"
-                  }
+                "status": "SUCCESS",
+                "msg": "get  book successfully!!!",
+                "data": {
+                  "bookname": "searchthinking",
+                  "authorname": "searchvivekanand",
+                  "bookimg": "search@12s21fasfasdf",
+                  "bookversion": "searchv.0.0.01",
+                  "createdAt": "2023-09-14T11:53:14.579Z",
+                  "updatedAt": "2023-09-14T11:53:14.579Z"
                 }
               }
             }
@@ -674,20 +655,20 @@
             "content": {
               "application/json": {
                 "example": {
-                  "Status": "FAILED",
-                  "message": "Book not found",
+                  "status": "FAILED",
+                  "msg": "Book not found.",
                   "data": null
                 }
               }
             }
           },
           "500": {
-            "description": "Internal Server Error.",
+            "description": "Internal Server Error",
             "content": {
               "application/json": {
                 "example": {
-                  "Status": "FAILED",
-                  "message": "Internal Server Error.",
+                  "status": "FAILED",
+                  "msg": "Internal Server Error",
                   "data": null
                 }
               }
